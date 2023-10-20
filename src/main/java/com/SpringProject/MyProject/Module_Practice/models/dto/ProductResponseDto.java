@@ -1,4 +1,4 @@
-package com.SpringProject.MyProject.dto;
+package com.SpringProject.MyProject.Module_Practice.models.dto;
 
 import lombok.Getter;
 import lombok.Setter;

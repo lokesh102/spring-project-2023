@@ -1,7 +1,6 @@
-package com.SpringProject.MyProject.services;
+package com.SpringProject.MyProject.Module_Practice.models.services;
 
-import com.SpringProject.MyProject.dto.FakeStoreProductDto;
-import com.SpringProject.MyProject.models.Product;
+import com.SpringProject.MyProject.Module_Practice.models.dto.FakeStoreProductDto;
 import jakarta.annotation.Nullable;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;

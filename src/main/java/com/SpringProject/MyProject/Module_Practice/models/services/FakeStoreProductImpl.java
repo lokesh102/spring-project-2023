@@ -1,22 +1,17 @@
-package com.SpringProject.MyProject.services;
+package com.SpringProject.MyProject.Module_Practice.models.services;
 
-import com.SpringProject.MyProject.dto.FakeStoreProductDto;
-import com.SpringProject.MyProject.dto.ProductDto;
-import com.SpringProject.MyProject.models.Category;
-import com.SpringProject.MyProject.models.Product;
+import com.SpringProject.MyProject.Module_Practice.models.dto.FakeStoreProductDto;
+import com.SpringProject.MyProject.Module_Practice.models.Category;
+import com.SpringProject.MyProject.Module_Practice.models.Product;
 import jakarta.annotation.Nullable;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.client.RequestCallback;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.ResponseExtractor;
 
 import java.util.Arrays;
 import java.util.List;

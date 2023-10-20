@@ -1,13 +1,10 @@
-package com.SpringProject.MyProject.controllers;
+package com.SpringProject.MyProject.Module_Practice.models.controllers;
 
-import com.SpringProject.MyProject.dto.FakeStoreProductDto;
-import com.SpringProject.MyProject.dto.ProductDto;
-import com.SpringProject.MyProject.dto.ProductResponseDto;
-import com.SpringProject.MyProject.models.Category;
-import com.SpringProject.MyProject.models.Product;
-import com.SpringProject.MyProject.services.FakeStoreProductImpl;
-import com.SpringProject.MyProject.services.ProductService;
-import org.springframework.http.ResponseEntity;
+import com.SpringProject.MyProject.Module_Practice.models.dto.FakeStoreProductDto;
+import com.SpringProject.MyProject.Module_Practice.models.dto.ProductDto;
+import com.SpringProject.MyProject.Module_Practice.models.Category;
+import com.SpringProject.MyProject.Module_Practice.models.Product;
+import com.SpringProject.MyProject.Module_Practice.models.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

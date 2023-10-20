@@ -1,9 +1,8 @@
-package com.SpringProject.MyProject.controllers;
+package com.SpringProject.MyProject.Module_Practice.models.controllers;
 
-import com.SpringProject.MyProject.dto.FakeStoreProductDto;
-import com.SpringProject.MyProject.dto.ProductDto;
-import com.SpringProject.MyProject.services.CategoryService;
-import com.SpringProject.MyProject.services.FakeStoreCategoryImpl;
+import com.SpringProject.MyProject.Module_Practice.models.dto.FakeStoreProductDto;
+import com.SpringProject.MyProject.Module_Practice.models.dto.ProductDto;
+import com.SpringProject.MyProject.Module_Practice.models.services.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
