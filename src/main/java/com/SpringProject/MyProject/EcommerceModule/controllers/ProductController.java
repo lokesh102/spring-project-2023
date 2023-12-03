@@ -3,8 +3,13 @@ import com.SpringProject.MyProject.EcommerceModule.models.Category;
 import com.SpringProject.MyProject.EcommerceModule.services.ProductService;
 import com.SpringProject.MyProject.EcommerceModule.models.Product;
 import com.SpringProject.MyProject.EcommerceModule.DTOs.ProductDto;
+import com.SpringProject.MyProject.clients.AuthenticationClient;
+import com.SpringProject.MyProject.clients.DTOs.ValidateResponseDTO;
+import com.SpringProject.MyProject.clients.exceptions.UserNotFoundException;
+import com.SpringProject.MyProject.clients.models.Role;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +23,28 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping()
-    public List<ProductDto> getAllProducts(){
-        List<Product> products = productService.getAllProducts();
-        List<ProductDto> productDtoList = new ArrayList<>();
-        for(Product product : products){
-            ProductDto productDto = convertProductToProductDTO(product);
-            productDtoList.add(productDto);
+    public List<ProductDto> getAllProducts(@RequestHeader(value = "AUTH-HEADER") String token, @RequestHeader(value = "USER-ID") String userId) throws UserNotFoundException, AccessDeniedException {
+        AuthenticationClient authenticationClient = new AuthenticationClient();
+        ValidateResponseDTO validateResponseDTO = authenticationClient.getAuthentication(token,Long.valueOf(userId));
+        if(validateResponseDTO == null){
+            throw new UserNotFoundException("user not found");
         }
-        return productDtoList;
+        boolean isAdmin = false;
+        for(Role role:validateResponseDTO.getRoles()){
+            if(role.getName().equals("ADMIN")){
+                isAdmin = true;
+            }
+        }
+        if(isAdmin){
+            List<Product> products = productService.getAllProducts();
+            List<ProductDto> productDtoList = new ArrayList<>();
+            for(Product product : products){
+                ProductDto productDto = convertProductToProductDTO(product);
+                productDtoList.add(productDto);
+            }
+            return productDtoList;
+        }
+        throw new AccessDeniedException("no Access for this role");
     }
     @GetMapping("/{productId}")
     public ProductDto getSingleProduct(@PathVariable(name = "productId")Long productId){
