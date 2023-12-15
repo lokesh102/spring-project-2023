@@ -7,6 +7,7 @@ import com.SpringProject.MyProject.clients.AuthenticationClient;
 import com.SpringProject.MyProject.clients.DTOs.ValidateResponseDTO;
 import com.SpringProject.MyProject.clients.exceptions.UserNotFoundException;
 import com.SpringProject.MyProject.clients.models.Role;
+import jakarta.annotation.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.AccessDeniedException;
@@ -23,19 +24,19 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping()
-    public List<ProductDto> getAllProducts(@RequestHeader(value = "AUTH-HEADER") String token, @RequestHeader(value = "USER-ID") String userId) throws UserNotFoundException, AccessDeniedException {
-        AuthenticationClient authenticationClient = new AuthenticationClient();
-        ValidateResponseDTO validateResponseDTO = authenticationClient.getAuthentication(token,Long.valueOf(userId));
-        if(validateResponseDTO == null){
-            throw new UserNotFoundException("user not found");
-        }
-        boolean isAdmin = false;
-        for(Role role:validateResponseDTO.getRoles()){
-            if(role.getName().equals("ADMIN")){
-                isAdmin = true;
-            }
-        }
-        if(isAdmin){
+    public List<ProductDto> getAllProducts(@Nullable @RequestHeader(value = "AUTH-HEADER") String token, @Nullable @RequestHeader(value = "USER-ID") String userId) throws UserNotFoundException, AccessDeniedException {
+//        AuthenticationClient authenticationClient = new AuthenticationClient();
+//        ValidateResponseDTO validateResponseDTO = authenticationClient.getAuthentication(token,Long.valueOf(userId));
+//        if(validateResponseDTO == null){
+//            throw new UserNotFoundException("user not found");
+//        }
+//        boolean isAdmin = false;
+//        for(Role role:validateResponseDTO.getRoles()){
+//            if(role.getName().equals("ADMIN")){
+//                isAdmin = true;
+//            }
+//        }
+//        if(isAdmin){
             List<Product> products = productService.getAllProducts();
             List<ProductDto> productDtoList = new ArrayList<>();
             for(Product product : products){
@@ -43,8 +44,8 @@ public class ProductController {
                 productDtoList.add(productDto);
             }
             return productDtoList;
-        }
-        throw new AccessDeniedException("no Access for this role");
+        //}
+        //throw new AccessDeniedException("no Access for this role");
     }
     @GetMapping("/{productId}")
     public ProductDto getSingleProduct(@PathVariable(name = "productId")Long productId){
